@@ -1,0 +1,13 @@
+type: hyperskill
+title: Last Pencil
+language: English
+summary: "<p>Playing with friends is pure fun but getting ahead of them is even more\
+  \ enjoyable. Invite a friend to play the Last Pencil, a game where you decide who\
+  \ wins.\_In this project, your opponent is a computer that is an expert in the game.\
+  \ But it's up to you to choose who wins.</p><br/><br/>Learn more at <a href=\"https://hyperskill.org/projects/258?utm_source=ide&utm_medium=ide&utm_campaign=ide&utm_content=project-card\"\
+  >https://hyperskill.org/projects/258</a>"
+programming_language: Python
+content:
+- Last Pencil
+- Topics
+mode: Study

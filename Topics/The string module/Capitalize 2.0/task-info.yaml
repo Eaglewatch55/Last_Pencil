@@ -1,0 +1,12 @@
+type: code
+files:
+- name: main.py
+  visible: true
+  text: |-
+    import string
+
+    # put your code here
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/15340#comment
+status: Unchecked
+record: -1

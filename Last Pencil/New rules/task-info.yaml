@@ -1,0 +1,113 @@
+type: edu
+files:
+- name: game.py
+  visible: true
+  learner_created: false
+- name: test/__init__.py
+  visible: false
+  learner_created: false
+- name: test/tests.py
+  visible: false
+  text: |
+    from hstest import *
+    import re
+
+
+    class LastPencilTest(StageTest):
+
+        @dynamic_test()
+        def CheckOutput(self):
+            main = TestedProgram()
+            output = main.start().lower()
+            lines = output.strip().split('\n')
+            if len(lines) != 1 or "how many pencils" not in output:
+                raise WrongAnswer("When the game starts, it should output only one line asking the user about the amount "
+                                  "of pencils they would like to use with the \"How many pencils\" string.")
+
+            output2 = main.execute("1")
+            output2 = output2.replace(" ", "")
+            pattern = re.compile(".*\([a-zA-Z_0-9]+,[a-zA-Z_0-9]+\)")
+            if len(output2.split()) != 1:
+                raise WrongAnswer("When the user replies with the amount of pencils, the game should print 1 non-empty "
+                                  "line asking who will be the first player.\n"
+                                  f"{len(output2.split())} lines were found in the output.")
+            if not re.match(pattern, output2):
+                raise WrongAnswer("When the user replies with the amount of pencils, the game should ask who will"
+                                  " be the first player ending with the \"(\"Name1\", \"Name2\")\" string.")
+            return CheckResult.correct()
+
+        test_data = [
+            [5, 1],
+            [20, 1],
+            [300, 1],
+            [5, 2],
+            [20, 2],
+            [300, 2]
+        ]
+
+        @dynamic_test(data=test_data)
+        def CheckGame(self, amount, first):
+            main = TestedProgram()
+            main.start()
+            output2 = main.execute(str(amount))
+            output2 = output2.replace(" ", "")
+
+            leftName = output2[output2.rfind('(') + 1:output2.rfind(',')]
+            rightName = output2[output2.rfind(',') + 1:output2.rfind(')')]
+
+            firstName = ""
+            if first == 1:
+                firstName = leftName
+            else:
+                firstName = rightName
+
+            output3 = main.execute(firstName).lower()
+            lines = output3.strip().split('\n')
+            linesNonEmpty = [s for s in lines if len(s) != 0]
+
+            if len(linesNonEmpty) != 2:
+                raise WrongAnswer("When the player provides the initial game conditions"
+                                  ", your program should print 2 non-empty lines:\n"
+                                  "one with with vertical bar symbols representing the number of pencils, "
+                                  "the other with the \"*NameX* is going first\" string.\n"
+                                  f"{len(linesNonEmpty)} lines were found in the output.")
+
+            checkPencils = [s for s in lines if '|' in s]
+            if len(checkPencils) == 0:
+                raise WrongAnswer("When the player provides the initial game conditions"
+                                  ", your program should print one line with several vertical bar "
+                                  "symbols ('|') representing pencils.")
+            if len(checkPencils) > 1:
+                raise WrongAnswer("When the player provides the initial game conditions"
+                                  ", your program should print only one line with several vertical bar "
+                                  "symbols ('|') representing pencils.")
+            if len(list(set(checkPencils[0]))) != 1:
+                raise WrongAnswer("The line with pencils should not contain any symbols other than the '|' symbol.")
+
+            if len(checkPencils[0]) != amount:
+                raise WrongAnswer("The line with pencils should contain as many '|' symbols as the player provided.")
+
+            checkTurn = any((firstName.lower() in s) and ("first" in s) for s in lines)
+
+            if not checkTurn:
+                raise WrongAnswer(f"There should be a line in the output that contains the \"{firstName} is going first!\""
+                                  f" string if {firstName} is the first player.")
+            if not main.is_finished():
+                raise WrongAnswer("Your program should not request anything after initial conditions have been printed.")
+            return CheckResult.correct()
+
+
+    if __name__ == '__main__':
+        LastPencilTest().run_tests()
+  learner_created: false
+- name: tests.py
+  visible: false
+  text: |
+    from test.tests import LastPencilTest
+
+    if __name__ == '__main__':
+        LastPencilTest().run_tests()
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/20064#comment
+status: Solved
+record: 2

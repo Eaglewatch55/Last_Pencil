@@ -1,0 +1,84 @@
+<h5 id="description">Description</h5>
+<p>You've played a couple of games with your friend. After a while, you both found out that if there are 2, 3, or 4 pencils left on the table, you automatically win. It happens because a player can take 1, 2, or 3 pencils and leave the other player with only one. The other player has nothing left but to take the last pencil and lose the game.</p>
+<p>On the other hand, if you have 5 pencils on the table, you lose. You can take 1, 2, or 3 pencils, your friend will then take 1, 2, or 3 pencils as well leaving you with the last pencil. So, it will again lead to the situation described above but vice-versa.</p>
+<p>The same thing happens when there are 6, 7, or 8 pencils left on the table. It will eventually repeat all over again.</p>
+<p>It's easier to get a grasp of it with a line of 10 red-green pencils. In this example, we can be sure that if both players know the winning strategy, the first one will be the winner. Here is a game process:</p>
+<p><strong><code class="java"><span style="color: #ff4363;">|</span><span style="color: #66cc66;">|||</span><span style="color: #ff4363;">|</span><span style="color: #66cc66;">|||</span><span style="color: #ff4363;">|</span><span style="color: #66cc66;">|</span></code></strong></p>
+<p>The first player<strong> </strong>has an advantage and takes 1 pencil:</p>
+<p><strong><code class="java"><span style="color: #ff4363;">|</span><span style="color: #66cc66;">|||</span><span style="color: #ff4363;">|</span><span style="color: #66cc66;">|||</span><span style="color: #ff4363;">|</span></code></strong></p>
+<p>The second player has a disadvantage, so if the second player takes any number of pencils from 1 to 3, the first<strong> </strong>player<strong> </strong>is left with a winning strategy:</p>
+<ul>
+<li>1: <strong><code class="java"><span style="color: #ff4363;">|</span><span style="color: #66cc66;">|||</span><span style="color: #ff4363;">|</span><span style="color: #66cc66;">|||</span></code><span style="color: #66cc66;"> </span></strong></li>
+<li>2: <strong><code class="java"><span style="color: #ff4363;">|</span><span style="color: #66cc66;">|||</span><span style="color: #ff4363;">|</span><span style="color: #66cc66;">||</span></code><span style="color: #66cc66;"> </span></strong></li>
+<li>3: <strong><code class="java"><span style="color: #ff4363;">|</span><span style="color: #66cc66;">|||</span><span style="color: #ff4363;">|</span><span style="color: #66cc66;">|</span></code><span style="color: #66cc66;"> </span></strong></li>
+</ul>
+<p>The first player stands in a<strong> </strong>winning position and takes that number. It will lead to a losing position for the second player:</p>
+<p><strong><code class="java"><span style="color: #ff4363;">|</span><span style="color: #66cc66;">|||</span><span style="color: #ff4363;">|</span></code></strong></p>
+<p>The second player stands in a losing position — if the second player takes any number of pencils from 1 to 3, the first player will be left in a winning position:</p>
+<ul>
+<li>1: <strong><code class="java"><span style="color: #ff4363;">|</span><span style="color: #66cc66;">|||</span></code><span style="color: #66cc66;"> </span></strong></li>
+<li>2: <strong><code class="java"><span style="color: #ff4363;">|</span><span style="color: #66cc66;">||</span></code><span style="color: #66cc66;"> </span></strong></li>
+<li>3: <strong><code class="java"><span style="color: #ff4363;">|</span><span style="color: #66cc66;">|</span></code></strong></li>
+</ul>
+<p>The first player stands in a<strong> </strong>winning position and takes the right number of pencils. It leaves the second player with one pencil:</p>
+<p><strong><code class="java"><span style="color: #ff4363;">|</span></code></strong></p>
+<p>Your friend came up with the idea of creating a bot for the game a bit more replayable. Instead of taking input from two players, you need to program a bot that follows a winning strategy. If the bot's position isn't the winning one, you can program it to take any number of pencils (1, 2, or 3) at random. You can also come up with any pattern of your own for the losing position.</p>
+<p>To make it easier to understand, the logic of the bot could look like this:</p>
+<p>If the bot is in a losing position, the outcome of the game does not depend on his action, so if the number of pencils on the table in his turn is:</p>
+<ul>
+<li>5,9,13,17... - bot takes a random number of pencils from 1 to 3</li>
+<li>1 - bot takes the last pencil and loses</li>
+</ul>
+<p>If the bot is in a winning position, his goal is to take as many pencils to put his opponent in a losing position, so if the number of pencils on the table in his turn:</p>
+<ul>
+<li>4,8,12,16... - bot takes 3 pencils</li>
+<li>3,7,11,15... - bot takes 2 pencils</li>
+<li>2,6,10,14... - bot takes 1 pencil</li>
+</ul>
+<h5 id="objectives">Objectives</h5>
+<p>Implement the bot for the second of the two possible players. For example, in <code class="java">Who will be the first (John, Jack)</code> <code class="java">John</code> is the user and <code class="java">Jack</code> <strong>is the bot (and will always be the bot).</strong></p>
+<p>So, if the player chooses <code class="java">Jack</code> as the first player, after that input, the bot's move should be printed.</p>
+<p>Your final objective is to expand your program. Write a solution, that can be executed for any initial number of pencils. Check each iteration whose turn is now. If it is the bot, instead of requiring input from the second player, output one line that contains the bot's move (<code class="java">1</code>, <code class="java">2</code> or <code class="java">3</code>) that follows the winning strategy. If the bot is not in the winning position, make it follow any pattern of your liking, as the tests check only the bot's winning position.</p>
+<h5 id="examples">Examples</h5>
+<p><strong>Example 1:</strong></p>
+<pre><code class="language-no-highlight">How many pencils would you like to use:
+&gt; 10
+Who will be the first (John, Jack):
+&gt; Jack
+||||||||||
+Jack's turn:
+1
+|||||||||
+John's turn!
+&gt; 2
+|||||||
+Jack's turn:
+2
+|||||
+John's turn!
+&gt; 1
+||||
+Jack's turn:
+3
+|
+John's turn!
+&gt; 1
+Jack won!</code></pre>
+<p><strong>Example 2: </strong></p>
+<pre><code class="language-no-highlight">How many pencils would you like to use:
+&gt; 6
+Who will be the first (John, Jack):
+&gt; John
+||||||
+John's turn!
+&gt; 1
+|||||
+Jack's turn:
+2
+|||
+John's turn!
+&gt; 2
+|
+Jack's turn:
+1
+John won!</code></pre>

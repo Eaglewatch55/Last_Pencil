@@ -1,0 +1,81 @@
+<h5 id="description">Description</h5>
+<p>The game was interesting, but it went sour. No one was playing a fair game! You've taken 10 pencils, your friend decided that it is unfair and somehow took a negative number! Moreover, you both can't decide which of you won. Maybe, it's time to add new rules to the game?</p>
+<h5 id="objectives">Objectives</h5>
+<p>In this stage, your task is to add a new level of control over the game. Check the input. If it's incorrect, print the reason why. Also, limit the possible amount of pencils taken. Let's say that players can remove not more than 3 pencils at a time.</p>
+<p>Here are possible errors and their feedback:</p>
+<ol>
+<li>The initial number of pencils is not a numeric string, so it can't be converted to an integer — <code class="java">The number of pencils should be numeric</code>;</li>
+<li>The initial number of pencils is equal to <code class="java">0</code> <em>—</em> <code class="java">The number of pencils should be positive</code>;</li>
+<li>If the input is a negative amount, apply condition (1), as the minus sign is not a numeric;</li>
+<li>If the chosen first player is not <code class="java">*Name1*</code> or <code class="java">*Name2*</code> — <code class="java">Choose between *Name1* and *Name2*</code>;</li>
+<li>One of the players has taken the number of pencils that differs from <code class="java">1</code>, <code class="java">2</code>, or <code class="java">3</code> — <code class="java">Possible values: '1', '2' or '3'</code>;</li>
+<li>One of the players has taken more pencils than there are on the table — <code class="java">Too many pencils were taken</code>.</li>
+</ol>
+<p>If one of the errors occurs, ask for input once again.</p>
+<p>Don't forget to help determine the winner of the game. <strong>The player who takes the last pencil loses the game</strong>. Print out the result at the end of the game with the line <code class="java">*Winner-name* won!</code></p>
+<h5 id="examples">Examples</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong>Example 1: </strong><em>the initial number of pencils is not numeric</em></p>
+<pre><code class="language-no-highlight">How many pencils would you like to use:
+&gt; a
+The number of pencils should be numeric
+&gt; 5
+Who will be the first (John, Jack):
+&gt;</code></pre>
+<p><strong>Example 2: </strong><em>the initial number of pencils equals 0</em></p>
+<pre><code class="language-no-highlight">How many pencils would you like to use:
+&gt; 0
+The number of pencils should be positive
+&gt; 20
+Who will be the first (John, Jack):
+&gt;</code></pre>
+<p><strong>Example 3: </strong><em>the chosen first player is not in the list</em></p>
+<pre><code class="language-no-highlight">How many pencils would you like to use:
+&gt; 5
+Who will be the first (John, Jack):
+&gt; JohnJack
+Choose between 'John' and 'Jack'
+&gt; John
+|||||
+John's turn!
+&gt;</code></pre>
+<p><strong>Example 4: </strong><em>one of the players has taken the number of pencils that differs from 1, 2, or 3</em></p>
+<pre><code class="language-no-highlight">How many pencils would you like to use:
+&gt; 5
+Who will be the first (John, Jack):
+&gt; John
+|||||
+John's turn!
+&gt; 4
+Possible values: '1', '2' or '3'
+&gt; 1
+||||
+Jack's turn!
+&gt;</code></pre>
+<p> <strong>Example 5: </strong><em>the chosen number of pencils is not numeric</em></p>
+<pre><code class="language-no-highlight">How many pencils would you like to use:
+&gt; 5
+Who will be the first (John, Jack):
+&gt; John
+|||||
+John's turn!
+&gt; a
+Possible values: '1', '2' or '3'
+&gt; 1
+||||
+Jack's turn!
+&gt;</code></pre>
+<p><strong>Example 6: </strong><em>John is the winner of the game</em></p>
+<pre><code class="language-no-highlight">How many pencils would you like to use:
+&gt; 5
+Who will be the first (John, Jack):
+&gt; John
+|||||
+John's turn!
+&gt; 3
+||
+Jack's turn!
+&gt; 3
+Too many pencils were taken
+&gt; 2
+John won!</code></pre>
