@@ -1,7 +1,8 @@
 from string import digits
+from random import randint
 
 
-def character_validation(text):
+def character_validation(text: str):
     list1 = list(text)
     validator = True
     for element in list1:
@@ -10,6 +11,17 @@ def character_validation(text):
             break
 
     return validator
+
+
+def bot_answer(pencils_left: int):
+    if pencils_left in range(5, n_pencils + 1, 4):
+        return randint(1, 3)
+    elif pencils_left in range(4, n_pencils + 1, 4):
+        return 3
+    elif pencils_left in range(3, n_pencils + 1, 4):
+        return 2
+    elif pencils_left in range(2, n_pencils + 1, 4) or pencils_left == 1:
+        return 1
 
 
 n_pencils = input("How many pencils would you like to use:")
@@ -37,13 +49,17 @@ while True:
     else:
         first_player = input("Choose between 'John' and 'Jack'")
 
-
 print("|" * n_pencils)
 
 while n_pencils > 0:
     for player in player_list:
         print(player + "'s turn:")
-        taken = input()
+
+        if player == "John":
+            taken = input()
+        else:
+            taken = str(bot_answer(n_pencils))
+            print(taken)
 
         while True:
             if not character_validation(taken) or taken not in ("1", "2", "3"):

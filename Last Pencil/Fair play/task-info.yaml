@@ -268,5 +268,5 @@ files:
         LastPencilTest().run_tests()
   learner_created: false
 feedback_link: https://hyperskill.org/learn/step/20066#comment
-status: Unchecked
-record: -1
+status: Solved
+record: 4
